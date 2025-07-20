@@ -61,37 +61,53 @@
     </OfficeTab>
   </ExtensionPoint>
 
-  <VersionOverrides xsi:type="mailappor:VersionOverridesV1_0">
-    <VersionOverrides>
-      <Hosts>
-        <Host xsi:type="mailappor:Host" Name="Mailbox">
-          <DesktopFormFactor>
-            <FunctionFile resid="functionFile"/>
-            <ExtensionPoint xsi:type="mailappor:MessageComposeCommandSurface">
-              <!-- buttons go here too for overrides -->
-            </ExtensionPoint>
-          </DesktopFormFactor>
-        </Host>
-      </Hosts>
-    </VersionOverrides>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="MailHost">
+        <DesktopFormFactor>
+          <FunctionFile resid="functionFile"/>
+          <ExtensionPoint xsi:type="MessageComposeCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="aiComposeGroup">
+                <Label resid="groupLabel"/>
+                <Control xsi:type="Button" id="aiWriteButton">
+                  <Label resid="buttonLabel"/>
+                  <Supertip>
+                    <Title resid="buttonLabel"/>
+                    <Description resid="buttonDesc"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="icon16"/>
+                    <bt:Image size="32" resid="icon32"/>
+                    <bt:Image size="80" resid="icon80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="taskpaneUrl"/>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="icon16" DefaultValue="https://outlook-ai-add-in.vercel.app/icon.png"/>
+        <bt:Image id="icon32" DefaultValue="https://outlook-ai-add-in.vercel.app/icon.png"/>
+        <bt:Image id="icon80" DefaultValue="https://outlook-ai-add-in.vercel.app/icon.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="taskpaneUrl" DefaultValue="https://outlook-ai-add-in.vercel.app/taskpane"/>
+        <bt:Url id="functionFile" DefaultValue="https://outlook-ai-add-in.vercel.app/taskpane"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="groupLabel" DefaultValue="AI"/>
+        <bt:String id="buttonLabel" DefaultValue="AI Write"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="buttonDesc" DefaultValue="Generate email content with AI"/>
+      </bt:LongStrings>
+    </Resources>
   </VersionOverrides>
-
-  <Resources>
-    <bt:Images>
-      <bt:Image id="icon16" DefaultValue="https://outlook-ai-add-in.vercel.app/icon.png"/>
-      <bt:Image id="icon32" DefaultValue="https://outlook-ai-add-in.vercel.app/icon.png"/>
-      <bt:Image id="icon80" DefaultValue="https://outlook-ai-add-in.vercel.app/icon.png"/>
-    </bt:Images>
-    <bt:Urls>
-      <bt:Url id="taskpaneUrl" DefaultValue="https://outlook-ai-add-in.vercel.app/taskpane"/>
-      <bt:Url id="functionFile" DefaultValue="https://outlook-ai-add-in.vercel.app/taskpane"/>
-    </bt:Urls>
-    <bt:ShortStrings>
-      <bt:String id="groupLabel" DefaultValue="AI"/>
-      <bt:String id="buttonLabel" DefaultValue="AI Write"/>
-    </bt:ShortStrings>
-    <bt:LongStrings>
-      <bt:String id="buttonDesc" DefaultValue="Generate email content with AI"/>
-    </bt:LongStrings>
-  </Resources>
 </OfficeApp>
