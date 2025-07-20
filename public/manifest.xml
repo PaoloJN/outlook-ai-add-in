@@ -4,9 +4,9 @@
            xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
            xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
            xsi:type="MailApp">
-  <Id>YOUR-UNIQUE-GUID-HERE</Id>
+  <Id>bfa5b8ce-ebce-4a2a-aa20-c6896fa9919a</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>Your Name</ProviderName>
+  <ProviderName>PaoloJN</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="AI Email Assistant"/>
   <Description DefaultValue="Write and reply to emails with AI."/>
