@@ -8,33 +8,33 @@ export default function Taskpane() {
     const [aiResponse, setAiResponse] = useState("");
 
     // Load Office.js runtime
-    useEffect(() => {
-        const script = document.createElement("script");
-        script.src = "https://appsforoffice.microsoft.com/lib/1/hosted/office.js";
-        script.async = true;
-        script.onload = () => {
-            if (window.Office) {
-                Office.onReady((info) => {
-                    if (info.host === Office.HostType.Outlook) {
-                        const item = Office.context.mailbox?.item;
-                        if (!item) {
-                            console.warn("This is not a compose window. Cannot access email body.");
-                            return;
-                        }
+    // useEffect(() => {
+    //     const script = document.createElement("script");
+    //     script.src = "https://appsforoffice.microsoft.com/lib/1/hosted/office.js";
+    //     script.async = true;
+    //     script.onload = () => {
+    //         if (window.Office) {
+    //             Office.onReady((info) => {
+    //                 if (info.host === Office.HostType.Outlook) {
+    //                     const item = Office.context.mailbox?.item;
+    //                     if (!item) {
+    //                         console.warn("This is not a compose window. Cannot access email body.");
+    //                         return;
+    //                     }
 
-                        item.body.getAsync("text", (result) => {
-                            if (result.status === Office.AsyncResultStatus.Succeeded) {
-                                setEmailBody(result.value);
-                            } else {
-                                console.error("Failed to get body:", result.error);
-                            }
-                        });
-                    }
-                });
-            }
-        };
-        document.body.appendChild(script);
-    }, []);
+    //                     item.body.getAsync("text", (result) => {
+    //                         if (result.status === Office.AsyncResultStatus.Succeeded) {
+    //                             setEmailBody(result.value);
+    //                         } else {
+    //                             console.error("Failed to get body:", result.error);
+    //                         }
+    //                     });
+    //                 }
+    //             });
+    //         }
+    //     };
+    //     document.body.appendChild(script);
+    // }, []);
 
     // Send to LLM API route
     async function generateReply() {
@@ -48,9 +48,10 @@ export default function Taskpane() {
 
     // Insert AI response into email
     function insertIntoEmail() {
-        Office.context.mailbox.item.body.setAsync(aiResponse, {
-            coercionType: Office.CoercionType.Html,
-        });
+        console.log("AI Response to insert:", aiResponse);
+        // Office.context.mailbox.item.body.setAsync(aiResponse, {
+        //     coercionType: Office.CoercionType.Html,
+        // });
     }
 
     return (
